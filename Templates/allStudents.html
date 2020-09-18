@@ -1,0 +1,42 @@
+{% extends "Base.html" %}
+
+{% block title %}Faculty Attendance{% endblock %}
+{% block logout%}
+<li><a href="logOut"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% endblock %}
+{% block body %}
+<div class="row content">
+ <h1>Attendance Management System</h1>
+ <span><h3>List of Students</h3></span>
+    <form action='getAttendance' id="myForm" method='post' class="form-horizontal">
+   {% csrf_token %}
+        <input name="userId" id="userId" type=number hidden>
+    </form>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="text-center">#</th>
+      <th scope="col" class="text-center">Registration Id</th>
+      <th scope="col" class="text-center">Name</th>
+      <th scope="col" class="text-center">View Attendance</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in data %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+        {% for item in student %}
+         <td>{{item}}</td>
+        {% endfor %}
+      <td>
+       <button onclick="StudentAttendance({{ forloop.counter }})" class="btn btn-primary">View Attendance</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'javaScripts/getStudentInfo.js' %}"></script>
+{% endblock %}
+{% block footer %}<strong>©Amar Pullepu</strong>{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "Base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block logout%}
+<li><a href="logOut"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% endblock %}
+{% block body %}
+<div class="row content">
+ {% csrf_token %}
+ <h1>Face Attendance System</h1>
+  <h3>Hello {{i}}</h3>
+  <h4 id="ModeOption">Scan For QR Image </h4>
+  <button id="flip-btn" type="button" class="btn" onclick="flipCam()" disabled>Flip Camera</button><br>
+  <video id="video"hidden></video>
+    <br>
+  <div class = "booth">
+    <canvas id="canvasInput" width="800" height="600"></canvas>
+  </div>
+  {% load static %}
+</div>
+<link rel="stylesheet" href="{% static 'CSS/booths.css' %}">
+<script type="text/javascript" src="{% static 'javaScripts/videos.js' %}"></script>
+<script type="text/javascript" src="{% static 'javaScripts/canvasDisplay.js' %}"></script>
+<script type="text/javascript" src="{% static 'javaScripts/videoProcessing.js' %}"></script>
+{% endblock %}

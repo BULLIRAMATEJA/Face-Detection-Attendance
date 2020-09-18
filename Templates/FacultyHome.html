@@ -1,0 +1,38 @@
+{% extends "Base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block logout%}
+<li><a href="logOut"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% endblock %}
+{% block body %}
+<div class="row content">
+ {% csrf_token %}
+ <h1>Face Attendance System</h1>
+  <h3>Welcome {{i}}</h3><br>
+    <div class="container">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <button onclick="window.location.href = 'studentRegister';" class="btn btn-primary btn-block">Student Registration</button>
+      </div></div>
+    <br>
+    <div class="container">
+        <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <button onclick="window.location.href = 'facultyAttendance';" class="btn btn-primary btn-block">Open Attendance</button>
+      </div>
+    </div> 
+    <br>
+    <div class="container">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <button onclick="window.location.href = 'allStudents';" class="btn btn-primary btn-block">All Students List</button>
+      </div>
+    </div>
+</div>
+{% if Registered %}
+    <script>alert("Student {{Registered}} Registered Sucessfully")</script>
+{% endif %}
+{% if Status %}
+   <script>alert("Attendance Marked Sucessfully")</script>
+{% endif %}
+{% endblock %}

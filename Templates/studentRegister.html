@@ -1,0 +1,70 @@
+{% extends "Base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block logout%}
+<li><a href="logOut"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% endblock %}
+
+{% block body %}
+{% if error %}
+    <script>alert("No Face Detected in uploaded File")</script>
+{% endif %}
+<div class="row content">
+ <h1>Attendance Management System</h1>
+  
+  <form action='postRegistration' method='post' onsubmit='return beforeSubmit()' class="form-horizontal" enctype="multipart/form-data">
+   {% csrf_token %}
+   <span><h3>Register Student</h3></span>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+      <label class="col-sm-2 control-label" align="right">First Name: </label>
+      <div class="col-sm-4">
+        <input class="form-control" id="firstName" type="text" name="firstName" placeholder="First Name" required>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+      <label class="col-sm-2 control-label" align="right">Last Name: </label>
+      <div class="col-sm-4">
+        <input class="form-control" id="lastName" type="text" name="lastName" placeholder="Last Name" required>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+      <label class="col-sm-2 control-label" align="right">Password: </label>
+      <div class="col-sm-4">
+        <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
+      </div>
+    </div>
+      <div class="form-group">
+        <div class="col-sm-2"></div>
+      <label class="col-sm-2 control-label" align="right">Re-enter Password: </label>
+      <div class="col-sm-4">
+        <input class="form-control" id="repassword" type="password" name="repassword" placeholder="Re-enter Password" required>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+      <label class="col-sm-2 control-label" align="right">Email: </label>
+      <div class="col-sm-4">
+        <input class="form-control" id="email" type="email" name="email" placeholder="Email" required>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <label class="col-sm-2 control-label" align="right">Upload Image: </label>
+        <div class="col-sm-4">
+          <input type="file" id="myFile" name="myFile" accept="image/*" capture="camera" required>
+        </div>
+    </div>
+    <button id="submit" type="submit" class="btn">
+     Register
+    </button>
+      
+    <div><h4 id = "logOut"></h4></div>
+  </form>  
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'javaScripts/preValidation.js' %}"></script>
+{% endblock %}

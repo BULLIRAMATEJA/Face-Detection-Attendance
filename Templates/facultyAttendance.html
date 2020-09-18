@@ -1,0 +1,85 @@
+{% extends "Base.html" %}
+
+{% block title %}Faculty Attendance{% endblock %}
+{% block logout%}
+<li><a href="logOut"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% endblock %}
+{% block body %}
+<div class="row content">
+ <h1>Attendance Management System</h1>
+  
+  <form action='attendanceMarked' onsubmit='return beforeSubmit()' method='post' class="form-horizontal">
+   {% csrf_token %}
+   <span><h3>List of Students</h3></span>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="text-center">#</th>
+      <th scope="col" class="text-center">First Name</th>
+      <th scope="col" class="text-center">Last Name</th>
+      <th scope="col" class="text-center">Registration Number</th>
+      <th scope="col" class="text-center">Attendance</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in data %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+        {% for item in student %}
+         <td>{{item}}</td>
+        {% endfor %}
+      <td>
+       <select class="form-control" id="sel{{ forloop.counter0 }}" name="sel{{ forloop.counter0 }}">
+        <option>Absent</option>
+        <option>Present</option>
+       </select>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2">
+        <input class="form-control" id="Count" type="number" name="Count" placeholder="HeadCount" required>
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2" >
+  <button type="submit" id="submit" class="btn btn-primary btn-block">
+     Submit
+  </button>
+          </div>
+      <div class="col-sm-1"></div>
+    <!-- Button trigger modal -->
+      <div class="col-sm-2">
+    <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+      Show QR Code
+    </button></div>
+  </form>
+    
+{% load static %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">QR Image</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="" id="QRimage" alt="My image" alt="Italian Trulli">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+</div>
+<script type="text/javascript" src="{% static 'javaScripts/attendanceUpdate.js' %}"></script>
+
+{% endblock %}
+{% block footer %}<strong>©Amar Pullepu</strong>{% endblock %}

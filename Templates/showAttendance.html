@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+
+{% block title %}Student Attendance{% endblock %}
+{% block logout%}
+<li><a href="logOut"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% endblock %}
+{% block body %}
+<div class="row content">
+ <h1>Attendance Management System</h1>
+  <style>
+        .tableFixHead thead th { position: sticky; top: 0; }
+  </style>
+   <span><h3>List of Attendance</h3></span>
+    <span><h4>Name: {{Name}}</h4><h4>    Registration Number: {{RegId}}</h4></span>
+  <div classs="table-responsive" style="overflow:auto; max-height:400px;">
+  <table class="table" style="border-collapse: collapse; width: 100%;">
+  <thead style="position: sticky; top: 0;">
+    <tr>
+      <th scope="col" class="text-center" style="background-color: black; color: white; position: sticky; top: 0;">#</th>
+      <th scope="col" class="text-center" style="background-color: black; color: white; position: sticky; top: 0;">Date</th>
+      <th scope="col" class="text-center" style="background-color: black; color: white; position: sticky; top: 0;">Time</th>
+      <th scope="col" class="text-center" style="background-color: black; color: white; position: sticky; top: 0;">Attendance</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for Attendance in data %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+        {% for item in Attendance %}
+         <td  scope="col">{{item}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr style="position: sticky; bottom: 0;">
+      <td scope="col" style="background-color: #524e4e; color: white; position: sticky; bottom: 0;"> </td>
+      <td scope="col" style="background-color: #524e4e; color: white; position: sticky; bottom: 0;"> </td>
+      <td scope="col" style="background-color: #524e4e; color: white; position: sticky; bottom: 0;"> </td>
+      <th scope="col" style="background-color: #524e4e; color: white; position: sticky; bottom: 0;">Percentage: {{percentage}}</th>
+    </tr>
+  </tfoot>
+  </table>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block footer %}<strong>©Amar Pullepu</strong>{% endblock %}
